@@ -38,9 +38,7 @@ def ask():
     response = ""
 
     if "column" in user_message or "columns" in user_message:
-        response = f"The dataset has the following columns: {', '.join(dataframe.columns)}."
-
-    
+        response = f"The dataset has the following columns {', '.join(dataframe.columns)}."
 
     elif re.search(r"(replace|get rid of).*missing", user_message):
         numeric_cols = dataframe.select_dtypes(include='number').columns
@@ -51,19 +49,21 @@ def ask():
             "Missing values in numeric columns were replaced with the mean. "
             "You can download the updated file <a href='/download/processed_file.csv' target='_blank'>here</a>."
         )
-        
+
     elif "missing" in user_message:
         missing = dataframe.isnull().sum().to_dict()
-        response = "Missing values per column:\n" + "\n".join(f"{k}: {v}" for k, v in missing.items())
+        response = "Missing values per column:<br>" + "<br>".join(f"{k}: {v}" for k, v in missing.items())
 
     elif "data type" in user_message or "type of" in user_message:
         dtypes = dataframe.dtypes.to_dict()
         response = "Here are the data types of each column:<br>" + "<br>".join([f"{k}: {v}" for k, v in dtypes.items()])
 
     elif "mean" in user_message:
-        for col in dataframe.columns:
-            if col.lower() in user_message and pd.api.types.is_numeric_dtype(dataframe[col]):
-                response = f"The mean of '{col}' is {dataframe[col].mean():.2f}."
+        lowered_columns = {col.lower(): col for col in dataframe.columns}
+        for key in lowered_columns:
+            if key in user_message and pd.api.types.is_numeric_dtype(dataframe[lowered_columns[key]]):
+                actual_col = lowered_columns[key]
+                response = f"The mean of '{actual_col}' is {dataframe[actual_col].mean():.2f}."
                 break
         else:
             response = "Please specify a valid numeric column for mean calculation."
@@ -78,10 +78,29 @@ def ask():
         else:
             response = "Please specify a valid numeric column for min/max calculation."
 
+    elif "count" in user_message:
+        for col in dataframe.columns:
+            if col.lower() in user_message:
+                count_val = dataframe[col].count()
+                response = f"The count of non-null values in '{col}' is {count_val}."
+                break
+        else:
+            response = "Please specify a valid column for count calculation."
+
+    elif "sum" in user_message:
+        for col in dataframe.columns:
+            if col.lower() in user_message and pd.api.types.is_numeric_dtype(dataframe[col]):
+                sum_val = dataframe[col].sum()
+                response = f"The sum of values in '{col}' is {sum_val}."
+                break
+        else:
+            response = "Please specify a valid numeric column for sum calculation."
+
     else:
         response = "I'm not sure how to respond to that. Try asking about columns, missing values, mean, etc."
 
     return jsonify({"response": response})
+
 
 @app.route('/download/<path:filename>', methods=['GET'])
 def download(filename):
