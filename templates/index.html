@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV Analysis Chatbot</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 CSV Chatbot</h1>
+
+        <input type="file" id="csvFile" />
+        <button onclick="uploadFile()">Upload</button>
+
+        <div id="chatbox"></div>
+
+        <div class="input-area">
+            <input type="text" id="question" placeholder="Ask a question..." />
+            <button onclick="askChatbot()">Ask</button>
+        </div>
+    </div>
+
+    <script src="/static/index.js"></script>
+</body>
+</html>
