@@ -10,7 +10,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PROCESSED_FOLDER, exist_ok=True)
 
 dataframe = None
-filename = None
+filename = None 
 
 @app.route('/')
 def index():
@@ -37,10 +37,7 @@ def ask():
     user_message = request.json.get("question", "").lower()
     response = ""
 
-    if "column" in user_message or "columns" in user_message:
-        response = f"The dataset has the following columns {', '.join(dataframe.columns)}."
-
-    elif re.search(r"(replace|get rid of).*missing", user_message):
+    if re.search(r"(replace|get rid of).*missing", user_message):
         numeric_cols = dataframe.select_dtypes(include='number').columns
         dataframe[numeric_cols] = dataframe[numeric_cols].fillna(dataframe[numeric_cols].mean())
         processed_path = os.path.join(PROCESSED_FOLDER, "processed_file.csv")
@@ -95,9 +92,15 @@ def ask():
                 break
         else:
             response = "Please specify a valid numeric column for sum calculation."
+            
+    elif "column" in user_message or "columns" in user_message:
+        response = f"The dataset has the following columns {', '.join(dataframe.columns)}."
+        
 
     else:
         response = "I'm not sure how to respond to that. Try asking about columns, missing values, mean, etc."
+    
+    
 
     return jsonify({"response": response})
 
@@ -107,4 +110,5 @@ def download(filename):
     return send_from_directory(PROCESSED_FOLDER, filename, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=10000)
+

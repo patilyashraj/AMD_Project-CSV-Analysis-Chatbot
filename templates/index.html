@@ -21,6 +21,7 @@
 </div>
 
 <script>
+    // Show welcome message on page load
     window.onload = function () {
         const welcomeText = `
             Hello! 👋 I’m your CSV Analysis Bot.<br><br>
@@ -31,12 +32,20 @@
               <li>Replace missing values</li>
               <li>Mean of Age</li>
               <li>Sum of Fare</li>
-              <li>Count of entries in Sex</li>
+              <li>Count of entries in Cabin</li>
               <li>Min/Max of any numeric column</li>
             </ul>
             Let’s get started by uploading a file! 📁
         `;
         addMessage("Bot", welcomeText);
+
+        // Add "Enter" key support
+        document.getElementById("question").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault(); // Prevent form submission (if any)
+                askChatbot();
+            }
+        });
     };
 
     async function uploadFile() {
