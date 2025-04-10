@@ -2,24 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSV Analysis Chatbot</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>CSV Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>📊 CSV Chatbot</h1>
+<div class="container">
+    <h2>📊 CSV Analysis Chatbot</h2>
 
-        <input type="file" id="csvFile" />
-        <button onclick="uploadFile()">Upload</button>
+    <input type="file" id="csvFile" />
+    <button onclick="uploadFile()">Upload CSV</button>
 
-        <div id="chatbox"></div>
+    <div id="chatbox" class="chatbox"></div>
 
-        <div class="input-area">
-            <input type="text" id="question" placeholder="Ask a question..." />
-            <button onclick="askChatbot()">Ask</button>
-        </div>
+    <div class="input-area">
+        <input type="text" id="question" placeholder="Ask something like 'mean of Age'" />
+        <button onclick="askChatbot()">Ask</button>
     </div>
+</div>
 
-    <script src="/static/index.js"></script>
+<script>
+    window.onload = function () {
+        const welcomeText = `
+            Hello! 👋 I’m your CSV Analysis Bot.<br><br>
+            Upload a CSV file and ask me things like:
+            <ul>
+              <li>What are the column names?</li>
+              <li>Show missing values</li>
+              <li>Replace missing values</li>
+              <li>Mean of Age</li>
+              <li>Sum of Fare</li>
+              <li>Count of entries in Sex</li>
+              <li>Min/Max of any numeric column</li>
+            </ul>
+            Let’s get started by uploading a file! 📁
+        `;
+        addMessage("Bot", welcomeText);
+    };
+
+    async function uploadFile() {
+        const input = document.getElementById("csvFile");
+        const file = input.files[0];
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const res = await fetch("/upload", { method: "POST", body: formData });
+        const data = await res.json();
+
+        addMessage("You", `Uploaded file: ${file.name}`);
+        addMessage("Bot", data.message || data.error);
+    }
+
+    async function askChatbot() {
+        const input = document.getElementById("question");
+        const question = input.value;
+        if (!question.trim()) return;
+
+        addMessage("You", question);
+        input.value = "";
+
+        const res = await fetch("/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question }),
+        });
+
+        const data = await res.json();
+        const msg = data.response.replace(/\n/g, "<br>");
+        addMessage("Bot", msg);
+    }
+
+    function addMessage(sender, text) {
+        const chatbox = document.getElementById("chatbox");
+        const msgDiv = document.createElement("div");
+        msgDiv.className = 'message ' + (sender === "You" ? 'user' : 'bot');
+        msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+        chatbox.appendChild(msgDiv);
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+</script>
 </body>
 </html>
