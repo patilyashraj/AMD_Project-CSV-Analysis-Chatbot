@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>CSV Chatbot</title>
+       
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='logo.jpg') }}" type="image/jpeg">
 </head>
 <body>
 <div class="container">
-    <h2>📊 CSV Analysis Chatbot</h2>
+    <div class="header-bar">
+        <h2>📊 CSV Analysis Chatbot</h2>
+        <a href="/info">
+            <button class="info-btn">ℹ️ About the Bot</button>
+        </a>
+    </div>
+    
 
     <input type="file" id="csvFile" />
     <button onclick="uploadFile()">Upload CSV</button>
 
+    
     <div id="chatbox" class="chatbox"></div>
 
     <div class="input-area">

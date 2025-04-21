@@ -65,15 +65,23 @@ def ask():
         else:
             response = "Please specify a valid numeric column for mean calculation."
 
-    elif "min" in user_message or "maximum" in user_message or "max" in user_message:
+    elif "min" in user_message or "minimum" in user_message:
         for col in dataframe.columns:
             if col.lower() in user_message and pd.api.types.is_numeric_dtype(dataframe[col]):
                 col_min = dataframe[col].min()
-                col_max = dataframe[col].max()
-                response = f"Minimum of '{col}' is {col_min}, and maximum is {col_max}."
+                response = f"Minimum of '{col}' is {col_min}."
                 break
         else:
-            response = "Please specify a valid numeric column for min/max calculation."
+            response = "Please specify a valid numeric column for min calculation."
+            
+    elif "maximum" in user_message or "max" in user_message:
+        for col in dataframe.columns:
+            if col.lower() in user_message and pd.api.types.is_numeric_dtype(dataframe[col]):
+                col_max = dataframe[col].max()
+                response = f"Maximum of '{col}' is {col_max}."
+                break
+        else:
+            response = "Please specify a valid numeric column for max calculation."
 
     elif "count" in user_message:
         for col in dataframe.columns:
@@ -104,6 +112,10 @@ def ask():
 
     return jsonify({"response": response})
 
+@app.route('/info')
+def info():
+    return render_template('info.html')
+
 
 @app.route('/download/<path:filename>', methods=['GET'])
 def download(filename):
@@ -111,4 +123,5 @@ def download(filename):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
+    
 
