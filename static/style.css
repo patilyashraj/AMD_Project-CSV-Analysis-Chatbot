@@ -6,7 +6,6 @@ body {
 }
 
 .container {
-    /* max-width: 1000px; */
     margin: 20px;
     background: white;
     padding: 25px;
@@ -17,6 +16,13 @@ body {
 h1 {
     text-align: center;
     color: #333;
+}
+
+h2, h3 {
+    color: #2a2a2a;
+    margin-top: 25px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
 }
 
 #chatbox {
@@ -34,14 +40,14 @@ h1 {
 }
 
 .user {
-    background-color: #d8eaff;
+    background-color: #f5c45e;
     align-self: flex-end;
     text-align: right;
     margin-left: auto;
 }
 
 .bot {
-    background-color: #e4f7dc;
+    background-color: #dfb992;
     align-self: flex-start;
     text-align: left;
     margin-right: auto;
@@ -59,7 +65,7 @@ input[type="text"] {
 }
 
 button {
-    background-color: #28a745;
+    background-color: #443627;
     color: white;
     padding: 10px 16px;
     border: none;
@@ -69,10 +75,10 @@ button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #b8aca2;
 }
 
-
+/* Header with chatbot title and about button */
 .header-bar {
     display: flex;
     justify-content: space-between;
@@ -84,9 +90,10 @@ button:hover {
     margin: 0;
 }
 
+/* Top-right About button */
 .info-btn {
     padding: 8px 14px;
-    background-color: #28a745;
+    background-color: #443627;
     color: white;
     border: none;
     border-radius: 6px;
@@ -95,17 +102,18 @@ button:hover {
 }
 
 .info-btn:hover {
-    background-color: #1e7e34;
+    background-color: #b8aca2;
 }
 
+/* Info page - Back button to Chatbot */
 .info-back-container {
     text-align: right;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .info-btn-back {
     padding: 8px 14px;
-    background-color: #007bff;
+    background-color: #1f7d53;
     color: white;
     border: none;
     border-radius: 6px;
@@ -114,9 +122,20 @@ button:hover {
 }
 
 .info-btn-back:hover {
-    background-color: #0056b3;
+    background-color: #58b48c;
 }
 
+/* Info page - Feature bullets */
+.features-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.features-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
 
 .features-list a {
     color: #007bff;
@@ -127,7 +146,24 @@ button:hover {
     text-decoration: underline;
 }
 
+/* Info page - Link section */
+.link-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 25px;
+}
 
+.link-list li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Highlighted example questions */
 .example-questions {
     background-color: #f4f4f4;
     border-left: 4px solid #007bff;
@@ -138,11 +174,7 @@ button:hover {
     border-radius: 6px;
 }
 
-h3 {
-    color: #333;
-    margin-top: 20px;
-}
-
+/* Code inside chat or examples */
 code {
     display: block;
     margin: 4px 0;

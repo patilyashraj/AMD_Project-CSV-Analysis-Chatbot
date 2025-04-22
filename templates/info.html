@@ -6,77 +6,103 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='logo.jpg') }}" type="image/jpeg">
 </head>
-<body>
-<div class="container">
-    <h2>🤖 About the CSV Analysis Chatbot</h2>
-
-    <p>
-        Welcome to the <strong>CSV Analysis Chatbot</strong> — your smart assistant for exploring and understanding tabular data without writing a single line of code! <br>📊✨ Whether you're a student, analyst, or just curious about what's inside a dataset, this tool is built for you.
-    </p>
-
-    <h3>🛠️ What can it do?</h3>
-    <ul class="features-list">
-        <li>🔍 <strong>Discover column names</strong> in your CSV file</li>
-        <li>❓ <strong>Identify missing values</strong> in any column</li>
-        <li>🧹 <strong>Clean your data</strong> by replacing missing values with column averages</li>
-        <li>📈 <strong>Calculate stats:</strong> mean, min, max, count, and sum</li>
-        <li>🧠 <strong>Understand data types</strong> for each column</li>
-        <li>💾 <strong>Download</strong> your cleaned dataset anytime</li>
-    </ul>
-
-    <h3>💡 Why use it?</h3>
-    <p>
-        Tired of spreadsheets? This chatbot gives you the power of Python’s data tools with the simplicity of a conversation. Just type questions like:
-    </p>
-    <div class="example-questions">
-        <code>→ What are the column names?</code><br>
-        <code>→ Mean of Age</code><br>
-        <code>→ Show missing values</code><br>
-        <code>→ Replace missing values</code>
+<body style="background-color : #333;">
+    <div class="container info-section" style="background-color :#bbd8a3">
+        <h2>🤖 About the CSV Analysis Chatbot</h2>
+    
+        <p>
+            Welcome to the <strong>CSV Analysis Chatbot</strong> — your smart assistant for exploring and understanding tabular data without writing a single line of code! <br>📊✨ Whether you're a <em>student</em>, <em>analyst</em>, or simply curious about your data, this tool is designed to make your journey smooth and insightful.
+        </p>
+    
+        <h3>🛠️ What can it do?</h3>
+        <ul class="features-list">
+            <li>🔍 Discover <strong>column names</strong> in your CSV file</li>
+            <li>❓ Identify <strong>missing values</strong> in any column</li>
+            <li>🧹 Clean data by <strong>replacing missing values</strong> with column averages</li>
+            <li>📈 Calculate <strong>mean, min, max, count, and sum</strong> for numeric columns</li>
+            <li>🧠 Understand <strong>data types</strong> of each column</li>
+            <li>💾 <strong>Download</strong> the cleaned dataset</li>
+        </ul>
+    
+        <h3>💬 How do you use it?</h3>
+        <p>
+            Just upload your CSV file and ask questions using natural language:
+        </p>
+        <div class="example-questions">
+            → What are the column names?<br>
+            → Mean of Age<br>
+            → Show missing values<br>
+            → Replace missing values
+        </div>
+    
+        <h3>🎯 Who is it for?</h3>
+        <ul class="features-list">
+            <li>📚 <strong>Students</strong> exploring data science or analysis</li>
+            <li>🧾 <strong>Non-technical users</strong> working with CSV files</li>
+            <li>⚡ <strong>Anyone</strong> needing quick data insights</li>
+        </ul>
+    
+            
+        <h3>📘 What is Data Science?</h3>
+        <p>
+            Data science involves extracting meaningful insights from structured and unstructured data using techniques from statistics, machine learning, and domain knowledge.
+            It powers modern solutions like recommendation systems, fraud detection, and business intelligence tools.
+        </p>
+        <p>
+            To learn more, check out these great resources:
+        </p>
+        <ul class="link-list">
+            <li><a href="https://www.geeksforgeeks.org/data-science/" target="_blank">GeeksforGeeks: Data Science</a></li>
+            <li><a href="https://www.kaggle.com/" target="_blank">Kaggle</a></li>
+            <li><a href="https://towardsdatascience.com/" target="_blank">Towards Data Science</a></li>
+        </ul>
+    
+        <h3>📊 What is Data Analysis?</h3>
+        <p>
+            Data analysis is the process of examining, transforming, and modeling data to extract useful information, support decisions, and generate insights.
+            Clean data is key to accurate visualizations and conclusions — and this chatbot helps with exactly that.
+        </p>
+        <ul class="link-list">
+            <li><a href="https://www.geeksforgeeks.org/what-is-data-analysis/" target="_blank">GeeksforGeeks: What is Data Analysis</a></li>
+            <li><a href="https://www.w3schools.com/training/aws/data-analytics-fundamentals.php" target="_blank">W3Schools - Data Analytics Fundamentals</a></li>
+        </ul>
+    
+        <h3>🧭 How this Chatbot Supports Data Cleaning</h3>
+        <p>This bot simplifies your analysis journey:</p>
+        <ul class="features-list">
+            <li>📁<b> Upload your CSV file</b></li>
+            <img src="{{ url_for('static', filename='screenshot1.png') }}" alt="Chatbot Screenshot" style="max-width: 80%; max-height: 80%; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 20px;">
+            
+            <li>❓<b> Ask questions like:</b>
+                <ul style="margin-top: 5px; margin-bottom: 5px;">
+                    <li> Print the columns</li>
+                    <li> Data types of the columns</li>
+                    <img src="{{ url_for('static', filename='screenshot2.png') }}" alt="Chatbot Screenshot" style="max-width: 80%; max-height: 80%; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 20px;">
+                    <li> Mean of columns</li>
+                    <li> Sum of columns</li>
+                    <li> Count of columns</li>
+                    <img src="{{ url_for('static', filename='screenshot3.png') }}" alt="Chatbot Screenshot" style="max-width: 80%; max-height: 80%; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 20px;">
+                    <li> Max of columns</li>
+                    <li> Min of columns</li>
+                    <img src="{{ url_for('static', filename='screenshot4.png') }}" alt="Chatbot Screenshot" style="max-width: 80%; max-height: 80%; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 20px;">
+                </ul>
+            </li>
+            <li>🧹<b> Handle and Clean Missing Values:</b>
+                <ul>
+                    <li> Show missing values</li>
+                    <img src="{{ url_for('static', filename='screenshot5.png') }}" alt="Chatbot Screenshot" style="max-width: 80%; max-height: 80%; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 20px;">
+                    <li> Replace missing values</li>
+                    <img src="{{ url_for('static', filename='screenshot6.png') }}" alt="Chatbot Screenshot" style="max-width: 80%; max-height: 80%; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 20px;">
+                </ul>
+            </li>
+            <li>📥 <b>Download the updated CSV and start analyzing!</b></li>
+        </ul>
+    
+        <div class="info-back-container">
+            <a href="/"><button class="info-btn-back">⬅️ Back to Chatbot</button></a>
+        </div>
     </div>
-
-    <p>
-        It’s perfect for:
-    </p>
-    <ul class="features-list">
-        <li>📚 <strong>Students</strong> learning data science</li>
-        <li>🧾 <strong>Non-tech users</strong> working with CSV files</li>
-        <li>🚀 <strong>Quick insights</strong> without Excel or programming</li>
-    </ul>
-
-    <p>
-        With its modern UI and smart backend, the chatbot makes data analysis conversational, quick, and accessible for everyone.
-    </p>
-
-
-    <h3>📸 Screenshots</h3>
-    <img src="{{ url_for('static', filename='screenshot1.png') }}" alt="Chatbot Screenshot" style="max-width: 100%; border: 1px solid #ccc; margin-bottom: 10px;">
     
-    
-    <h3>📘 What is Data Science?</h3>
 
-    <p>
-        Data science involves extracting meaningful insights and patterns from structured or unstructured data using techniques from statistics, machine learning, and domain knowledge.
-    </p>
-
-    <p>
-        To know more about data science, follow the links given below:
-    </p>
-
-    <ul class="features-list">
-        <li><a href="https://www.geeksforgeeks.org/data-science/" target="_blank">GeeksforGeeks: Data Science</a></li>
-        <li><a href="https://www.kaggle.com/" target="_blank">Kaggle</a></li>
-        <li><a href="https://towardsdatascience.com/" target="_blank">Towards Data Science</a></li>
-    </ul>
-
-
-    <br>
-    <div class="info-back-container">
-        <a href="/">
-            <button class="info-btn-back">⬅️ Back to Chatbot</button>
-        </a>
-    </div>
-    
-</div>
 </body>
 </html>

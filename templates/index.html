@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='logo.jpg') }}" type="image/jpeg">
 </head>
-<body>
-<div class="container">
+<body style="background-color : #333;">
+<div class="container" style="background-color :#f0f1c5">
     <div class="header-bar">
         <h2>📊 CSV Analysis Chatbot</h2>
         <a href="/info">
@@ -24,7 +24,7 @@
     <div id="chatbox" class="chatbox"></div>
 
     <div class="input-area">
-        <input type="text" id="question" placeholder="Ask something like 'mean of Age'" />
+        <input type="text" id="question" placeholder="Ask something like 'mean of Age'" style="border-radius: 15px;"/>
         <button onclick="askChatbot()">Ask</button>
     </div>
 </div>

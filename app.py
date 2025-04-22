@@ -60,7 +60,7 @@ def ask():
         for key in lowered_columns:
             if key in user_message and pd.api.types.is_numeric_dtype(dataframe[lowered_columns[key]]):
                 actual_col = lowered_columns[key]
-                response = f"The mean of '{actual_col}' is {dataframe[actual_col].mean():.2f}."
+                response = f"The mean of '{actual_col}' is {dataframe[actual_col].mean():.4f}."
                 break
         else:
             response = "Please specify a valid numeric column for mean calculation."
@@ -69,7 +69,7 @@ def ask():
         for col in dataframe.columns:
             if col.lower() in user_message and pd.api.types.is_numeric_dtype(dataframe[col]):
                 col_min = dataframe[col].min()
-                response = f"Minimum of '{col}' is {col_min}."
+                response = f"Minimum of '{col}' is {col_min:.4f}."
                 break
         else:
             response = "Please specify a valid numeric column for min calculation."
@@ -78,7 +78,7 @@ def ask():
         for col in dataframe.columns:
             if col.lower() in user_message and pd.api.types.is_numeric_dtype(dataframe[col]):
                 col_max = dataframe[col].max()
-                response = f"Maximum of '{col}' is {col_max}."
+                response = f"Maximum of '{col}' is {col_max:.4f}."
                 break
         else:
             response = "Please specify a valid numeric column for max calculation."
@@ -87,7 +87,7 @@ def ask():
         for col in dataframe.columns:
             if col.lower() in user_message:
                 count_val = dataframe[col].count()
-                response = f"The count of non-null values in '{col}' is {count_val}."
+                response = f"The count of non-null values in '{col}' is {count_val:.4f}."
                 break
         else:
             response = "Please specify a valid column for count calculation."
@@ -96,7 +96,7 @@ def ask():
         for col in dataframe.columns:
             if col.lower() in user_message and pd.api.types.is_numeric_dtype(dataframe[col]):
                 sum_val = dataframe[col].sum()
-                response = f"The sum of values in '{col}' is {sum_val}."
+                response = f"The sum of values in '{col}' is {sum_val:.4f}."
                 break
         else:
             response = "Please specify a valid numeric column for sum calculation."
